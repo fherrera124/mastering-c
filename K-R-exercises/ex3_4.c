@@ -35,12 +35,15 @@ int main(void) {
     // the practical procedure is to invert all the bits of INT_MAX
     // ~INT_MAX
 
+    // and the easiest:
+    // INT_MIN       :)
+
     printf("largest unsigned: %u\n", a);
     printf("largest signed:   %d\n", b);
     printf("largest negative: %d\n", ~b);
 
-    itoa(~INT_MAX, s);
-    printf("Expected: %d. Result: %s\n", ~INT_MAX, s);
+    itoa(INT_MIN, s);
+    printf("Expected: %d. Result: %s\n", INT_MIN, s);
 
     return 0;
 }
