@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "chapter3.h"
+#include "include/chapter3.h"
 
 int  main(void) {
 

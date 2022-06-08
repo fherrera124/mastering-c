@@ -4,6 +4,7 @@ int  binsearch(int x, int v[], int n);
 void escape(char s[], char t[]);
 void expand(char s1[], char s2[]);
 void itoa(int n, char s[]);
+void itob(int n, char s[], char b);
 
 
 /* reverse:  reverse string s in place */

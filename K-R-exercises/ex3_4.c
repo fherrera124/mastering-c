@@ -2,7 +2,7 @@
 #include <limits.h>
 #include <stdio.h>
 
-#include "chapter3.h"
+#include "include/chapter3.h"
 
 void itoa(int n, char s[]);
 
