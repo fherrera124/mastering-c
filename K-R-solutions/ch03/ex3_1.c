@@ -3,7 +3,7 @@
 int  binsearch(int x, int v[], int n);
 
 int  main(void) {
-    int arr[] = {2, 4, 6, 7, 9, 29, 45, 46, 49, 50, 51};
+    // int arr[] = {2, 4, 6, 7, 9, 29, 45, 46, 49, 50, 51};
     // printf("%d", binsearch(2, arr, 11));
     return 0;
 }

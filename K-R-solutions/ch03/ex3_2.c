@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "include/chapter3.h"
+
 
 int  main(void) {
 
@@ -12,17 +12,18 @@ visible escape sequences like \n and \t as it copies the string t to s. Use a sw
 function for the other direction as well, converting escape sequences into the real characters.
 */
 void escape(char s[], char t[]) {
-    int i, j = 0;
+    int i, j;
+    i = j = 0;
     while (t[i] != '\0') {
         switch (t[i]) {
             case '\t':
-                s[j] == 't';
+                s[j] = 't';
                 break;
             case '\n':
-                s[j] == 'n';
+                s[j] = 'n';
                 break;
             case ' ':
-                s[j] == ' ';
+                s[j] = ' ';
                 break;
             default:
                 break;

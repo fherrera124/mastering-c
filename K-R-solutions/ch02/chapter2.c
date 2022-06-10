@@ -183,7 +183,7 @@ unsigned invert(unsigned x, int p, int n) {
 
     */
 
-    return x ^ ((~0 << (p + 1 - n)) ^ (~0 << p + 1));
+    return x ^ ((~0 << (p + 1 - n)) ^ (~0 << (p + 1)));
 }
 
 /*
