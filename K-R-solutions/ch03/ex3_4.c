@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void itoa(int n, char s[]);
+void itoa(unsigned n, char s[]);
 void reverse(char s[]);
 
 /* reverse:  reverse string s in place */
@@ -17,28 +17,24 @@ void reverse(char s[]) {
 }
 
 /*
-Exercise 3-4. In a two's complement number representation, our version of itoa does not
-handle the largest negative number, that is, the value of n equal to -( 2^(wordsize-1) ). Explain why not.
-Modify it to print that value correctly, regardless of the machine on which it runs.
+Exercise 3-4. In a two's complement number representation, our version
+of itoa does not handle the largest negative number, that is, the
+value of n equal to -( 2^(wordsize-1) ). Explain why not. Modify it to
+print that value correctly, regardless of the machine on which it runs.
+
+Answer: since there is an extra negative number in ca2, passing it to
+positive will incurr in overflow, that's because abs(INT_MIN) is 1
+higher than INT_MAX.
+
+Solution: casting n to unsigned in the function prototype we solve the
+problem since UINT_MAX is higher than abs(INT_MIN)
 */
-/*Answer: since there is an extra negative number in ca2, passing it to positive will results in overflow,
- abs(INT_MIN) is 1 higher than INT_MAX*/
+
 /* itoa:  convert n to characters in s */
-void itoa(int n, char s[]) {
+void itoa(unsigned n, char s[]) {
     int i, sign;
 
     i = 0;
-
-    if (n == INT_MIN) {
-        /*
-        So we know n its the largest negative, and n = -n
-        will incurr in overflow. Here simply store the less
-        significant digit and decrease n,
-        so that bellow n = -n; will work fine.
-        */
-        s[i++] = -(n % 10) + '0';
-        n /= 10;
-    }
 
     if ((sign = n) < 0)        /* record sign */
         n = -n;                /* make n positive */
@@ -54,38 +50,38 @@ void itoa(int n, char s[]) {
 int main(void) {
     char s[12];
 
-    // warmup
+    /* warmup */
 
-    unsigned a = UINT_MAX;  //  0xffffffff = 4294967295 = 2^(32) -1 = 11111111 11111111 11111111 11111111
+    /* the natural procedure to get the largest negative number is:
 
-    int b = INT_MAX;  // 0x7fffffff = 2147483647 = 2^(31) -1  =       01111111 11111111 11111111 11111111
+    UINT_MAX = 2^(32) -1 = 0xffffffff = 11111111 11111111 11111111 11111111
+    INT_MAX  = 2^(31) -1 = 0x7fffffff = 01111111 11111111 11111111 11111111
+    INT_MIN  = 2^(31)    = 0x80000000 = 10000000 00000000 00000000 00000000
 
-    int c = -b;
-    int d = ~b + 1;  // always a negative is calculated as two's complement
-    assert(c == d);
-    // although both c and d represent the negative of the largest unsigned number, that number is
-    // NOT the largest negative number..
-    // with two's complement we have one extra negative number, so:
-    // b is the largest signed positive number, and ~b is the largest signed negative number.
+    UINT_MAX represents all combinations available with 32 bits
+    INT_MAX represents all positive signed numbers available
+    INT_MIN represents all negative numbers available
 
-    // the natural procedure to get the largest negative number is:
+    A natural way to obtain INT_MIN could be:
 
-    // Largest unsigned: UINT_MAX          Largest positive: int INT_MAX
+        INT_MIN = UINT_MAX - INT_MAX = 2^(31)
 
-    // (UINT_MAX)  -  (INT_MAX)   --> 0x80000000  --> 10000000 00000000 00000000 00000000
+    but the practical procedure is to invert all the bits of INT_MAX:
+        INT_MIN = ~INT_MAX
+    */
 
-    // on decimal:
-    // (2^(32) -1) - (2^(31) -1)  --> 2^(31)      --> 2147483648
+    assert(-INT_MAX == ~INT_MAX + 1);  // the negation is calculated as two's complement
+    assert(-(-INT_MAX) == INT_MAX);
+    assert(-(-INT_MAX) == ~(-INT_MAX) + 1);
+    assert(INT_MIN == UINT_MAX - INT_MAX);
+    assert(INT_MIN == ~INT_MAX);
 
-    // the practical procedure is to invert all the bits of INT_MAX
-    // ~INT_MAX
-
-    // and the easiest:
-    // INT_MIN       :)
-
-    printf("largest unsigned: %u\n", a);
-    printf("largest signed:   %d\n", b);
-    printf("largest negative: %d\n", ~b);
+    // 2^(32) -1 = 11111111 11111111 11111111 11111111
+    printf("largest unsigned:        %u (0x%x)\n", UINT_MAX, UINT_MAX);
+    // 2^(31) -1  = 01111111 11111111 11111111 11111111
+    printf("largest positive signed: %d (0x%x)\n", INT_MAX, INT_MAX);
+    // 2^(31)  = 10000000 00000000 00000000 00000000
+    printf("largest negative:        %d (0x%x)\n", INT_MIN, INT_MIN);
 
     itoa(INT_MIN, s);
     printf("Expected: %d. Result: %s\n", INT_MIN, s);

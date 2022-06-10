@@ -17,8 +17,7 @@
         "sdkconfig": "c",
         "stdio.h": "c",
         "stdint.h": "c",
-        "limits.h": "c",
-        "chapter3.h": "c"
+        "limits.h": "c"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/K-R-solutions",
     "cmake.buildDirectory" : "${workspaceFolder}/K-R-solutions/build/${buildType}"
