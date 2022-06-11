@@ -48,7 +48,7 @@ void itoa(int n, char s[], int w) {
         count++; /*count the minus*/
     }
     while (w-- > count)
-        s[i++] = '*';
+        s[i++] = ' ';
 
     s[i] = '\0';
     reverse(s);
