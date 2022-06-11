@@ -1,19 +1,19 @@
 #include <ctype.h>
 #include <stdio.h>
 
-
+#include "utils.h"
 
 #define MAXLEN 10000
 
 void expand(char s1[], char s2[]);
 int  valid_shorthand(char s1[], int i);
-int  get_str(char str[], int limit);
 
 int main(void) {
     char str[MAXLEN];  // = "--hd-a0-4-";
     char expanded_str[MAXLEN];
 
-    get_str(str, MAXLEN);
+    printf("Awaiting for input:\n");
+    getline(str, MAXLEN);
 
     expand(str, expanded_str);
     printf("%s\n", expanded_str);
@@ -54,15 +54,4 @@ int valid_shorthand(char c[], int i) {
     if (cond)
         cond = c[i] < c[i + 2];
     return cond;
-}
-
-int get_str(char str[], int limit) {
-    int c, i = 0;
-
-    while (i < limit - 1 && (c = getchar()) != '\n' && c != EOF) {
-        str[i++] = c;
-    }
-    str[i] = '\0';
-
-    return i;
 }
