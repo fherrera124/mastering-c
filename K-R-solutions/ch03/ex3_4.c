@@ -1,20 +1,9 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
-#include <string.h>
+#include "utils.h"
 
 void itoa(unsigned n, char s[]);
-void reverse(char s[]);
-
-/* reverse:  reverse string s in place */
-void reverse(char s[]) {
-    int c, i, j;
-    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
-        c    = s[i];
-        s[i] = s[j];
-        s[j] = c;
-    }
-}
 
 /*
 Exercise 3-4. In a two's complement number representation, our version
@@ -26,7 +15,7 @@ Answer: since there is an extra negative number in ca2, passing it to
 positive will incurr in overflow, that's because abs(INT_MIN) is 1
 higher than INT_MAX.
 
-Solution: casting n to unsigned in the function prototype we solve the
+Solution: casting n to unsigned in the function prototype solves our
 problem since UINT_MAX is higher than abs(INT_MIN)
 */
 
@@ -50,9 +39,7 @@ void itoa(unsigned n, char s[]) {
 int main(void) {
     char s[12];
 
-    /* warmup */
-
-    /* the natural procedure to get the largest negative number is:
+    /* Some thoughts.
 
     UINT_MAX = 2^(32) -1 = 0xffffffff = 11111111 11111111 11111111 11111111
     INT_MAX  = 2^(31) -1 = 0x7fffffff = 01111111 11111111 11111111 11111111
@@ -62,7 +49,7 @@ int main(void) {
     INT_MAX represents all positive signed numbers available
     INT_MIN represents all negative numbers available
 
-    A natural way to obtain INT_MIN could be:
+    A natural way to obtain the largest negative number (INT_MIN) could be:
 
         INT_MIN = UINT_MAX - INT_MAX = 2^(31)
 
