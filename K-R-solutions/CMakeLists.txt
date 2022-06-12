@@ -18,6 +18,7 @@ add_executable(ex3_4 ${CH03_DIR}/ex3_4.c)
 add_executable(ex3_5 ${CH03_DIR}/ex3_5.c)
 add_executable(ex3_6 ${CH03_DIR}/ex3_6.c)
 add_executable(ex4_1 ${CH04_DIR}/ex4_1.c)
+add_executable(ex4_2 ${CH04_DIR}/ex4_2.c)
 
 
 # Add subdirectory to the build
@@ -29,6 +30,7 @@ target_link_libraries(ex3_4 utils)
 target_link_libraries(ex3_5 utils)
 target_link_libraries(ex3_6 utils)
 target_link_libraries(ex4_1 utils)
+target_link_libraries(ex4_2 utils)
 
 # Include directory to executables (for header files)
 target_include_directories(ex3_3 PRIVATE utils)
@@ -36,3 +38,4 @@ target_include_directories(ex3_4 PRIVATE utils)
 target_include_directories(ex3_5 PRIVATE utils)
 target_include_directories(ex3_6 PRIVATE utils)
 target_include_directories(ex4_1 PRIVATE utils)
+target_include_directories(ex4_2 PRIVATE utils)
