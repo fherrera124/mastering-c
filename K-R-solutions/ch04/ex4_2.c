@@ -1,6 +1,5 @@
 #include <assert.h>
 #include <ctype.h>
-#include <limits.h>
 #include <stdio.h>
 
 #include "utils.h"

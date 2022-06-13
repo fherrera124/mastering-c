@@ -19,6 +19,7 @@ add_executable(ex3_5 ${CH03_DIR}/ex3_5.c)
 add_executable(ex3_6 ${CH03_DIR}/ex3_6.c)
 add_executable(ex4_1 ${CH04_DIR}/ex4_1.c)
 add_executable(ex4_2 ${CH04_DIR}/ex4_2.c)
+add_executable(ex4_3 ${CH04_DIR}/ex4_3.c)
 
 
 # Add subdirectory to the build
