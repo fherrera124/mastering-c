@@ -1,7 +1,6 @@
 /*
-Exercise 4-3. Given the basic framework, it's straightforward
-to extend the calculator. Add the modulus (%) operator and
-provisions for negative numbers.
+Exercise 4-5. Add access to library functions like sin, exp,
+and pow. See <math.h> in Appendix B, Section 4.
 */
 
 #include <ctype.h>
@@ -17,6 +16,10 @@ provisions for negative numbers.
 /* functions */
 void   push(double);
 double pop(void);
+double peek(void);
+void   swap(void);
+void   clear(void);
+void   dup(void);
 int    getch(void);
 void   ungetch(int);
 int    getop(char[]);
@@ -41,6 +44,39 @@ double pop(void) {
         return val[--sp];
     else
         printf("error: stack empty\n");
+}
+
+/* peek: return top value from stack without popping*/
+double peek(void) {
+    if (sp > 0)
+        return val[sp - 1];
+    else
+        printf("warning: stack empty\n");
+}
+
+/* clear: clear the stack */
+void clear(void) {
+    sp = 0;
+}
+
+/* dup: duplicate top value from stack*/
+void dup(void) {
+    if (sp > 0)
+        push(peek());
+    else
+        printf("error: stack empty\n");
+}
+
+/* swap: swap the top two values from stack*/
+void swap(void) {
+    double tmp, tmp2;
+    if (sp >= 2) {
+        tmp  = pop();
+        tmp2 = pop();
+        push(tmp);
+        push(tmp2);
+    } else
+        printf("error: need at least two values on stack\n");
 }
 
 /* getop: get next character or numeric operand */
@@ -108,18 +144,47 @@ int main(void) {
                 break;
             case '/':
                 op2 = pop();
-                push(pop() / op2);
+                if (op2 != 0.0)
+                    push(pop() / op2);
+                else
+                    printf("error: zero divisor\n");
                 break;
             case '%':
                 op2 = pop();
                 push(fmod(pop(), op2));
                 break;
-            case '\n':
+            case 'c':
+                push(cos(pop()));
+                break;
+            case 'd':
+                dup();
+                break;
+            case 'e':
+                push(exp(pop()));
+                break;
+            case 'p':
+                op2 = pop();
+                push(pow(pop(), op2));
+                break;
+            case 's':
+                push(sin(pop()));
+                break;
+            case 'w':
+                swap();
+                break;
+            case '=':
                 printf("\t%.8g\n", pop());
                 break;
+            case '?':
+                printf("peek: %g\n", peek());
+                break;
+            case '\n':
+                break;
             default:
+                printf("error: unknown command %s\n", s);
                 break;
         }
     }
+
     return 0;
 }
