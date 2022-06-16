@@ -1,3 +1,10 @@
+/*
+Exercise 3-6. Write a version of itoa that accepts three
+arguments instead of two. The third argument is a minimum
+field width; the converted number must be padded with
+blanks on the left if necessary to make it wide enough.
+*/
+
 #include <stdio.h>
 #include <string.h>
 
@@ -5,7 +12,7 @@
 
 #define MAX 1000
 
-void itoa(int n, char s[], int w);
+void itoa(int, char[], int);
 
 int main(void) {
     char s[MAX];
@@ -22,14 +29,7 @@ int main(void) {
     return 0;
 }
 
-/*
-Exercise 3-6. Write a version of itoa that accepts three
-arguments instead of two. The third argument is a minimum
-field width; the converted number must be padded with
-blanks on the left if necessary to make it wide enough.
-*/
-
-/* itoa:  convert n to characters in s */
+/* itoa: convert n to characters in s */
 void itoa(int n, char s[], int w) {
     int i, sign, count;
 

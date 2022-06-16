@@ -1,26 +1,3 @@
-#include <ctype.h>
-#include <stdio.h>
-
-#include "utils.h"
-
-#define MAXLEN 10000
-
-void expand(char s1[], char s2[]);
-int  valid_shorthand(char s1[], int i);
-
-int main(void) {
-    char str[MAXLEN];
-    char expanded_str[MAXLEN];
-
-    printf("Awaiting for input:\n");
-    getline(str, MAXLEN);
-
-    expand(str, expanded_str);
-    printf("%s\n", expanded_str);
-
-    return 0;
-}
-
 /*
 Exercise 3-3. Write a function expand(s1,s2) that expands
 shorthand notations like a-z in the string s1 into the
@@ -29,9 +6,19 @@ letters of either case and digits, and be prepared to
 handle cases like a-b-c and a-z0-9 and -a-z. Arrange that
 a leading or trailing - is taken literally.
 */
+
+#include <ctype.h>
+#include <stdio.h>
+
+#include "utils.h"
+
+#define MAXLEN 10000
+
+void expand(char[], char[]);
+int  valid_shorthand(char[], int);
+
 void expand(char s1[], char s2[]) {
     int i, j, current, last;
-
     i = j = 0;
 
     do {
@@ -56,4 +43,17 @@ int valid_shorthand(char c[], int i) {
     if (cond)
         cond = c[i] < c[i + 2];
     return cond;
+}
+
+int main(void) {
+    char str[MAXLEN];
+    char expanded_str[MAXLEN];
+
+    printf("Awaiting for input:\n");
+    getline(str, MAXLEN);
+
+    expand(str, expanded_str);
+    printf("%s\n", expanded_str);
+
+    return 0;
 }

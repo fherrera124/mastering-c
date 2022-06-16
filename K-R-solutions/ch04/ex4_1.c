@@ -1,19 +1,20 @@
-#include <stdio.h>
-
-#include "utils.h"
-
-#define MAXLEN 10000
-
-int strindex(char s[], char t[]);
-
 /*
 Exercise 4-1. Write the function strindex(s,t) which
 returns the position of the rightmost occurrence of
 t in s, or -1 if there is none.
 */
 
-/* strindex: returns the position of the rightmost
-occurrence of t in s, -1 if none. */
+#include <stdio.h>
+
+#include "utils.h"
+
+#define MAXLEN 10000
+
+int strindex(char[], char[]);
+
+/* strindex: returns the position of the
+rightmost occurrence of t in s, -1 if none.
+*/
 int strindex(char s[], char t[]) {
     int i, j, k, pos;
 

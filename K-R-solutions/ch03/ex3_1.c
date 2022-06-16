@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int  binsearch(int x, int v[], int n);
+int  binsearch(int, int[], int);
 
 int  main(void) {
     // int arr[] = {2, 4, 6, 7, 9, 29, 45, 46, 49, 50, 51};

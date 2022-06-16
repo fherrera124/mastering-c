@@ -1,17 +1,19 @@
+/*
+Exercise 3-5. Write the function itob(n,s,b) that converts
+the integer n into a base b character representation in
+the string s. In particular, itob(n,s,16) formats s as a
+hexadecimal integer in s.
+*/
+
 #include <limits.h>
 #include <stdio.h>
+
 #include "utils.h"
 
 #define INT_ARRAY_SIZE __INT_WIDTH__ + 2
 
+void itob(unsigned, char[], int);
 
-void itob(unsigned n, char s[], int b);
-
-/*
-Exercise 3-5. Write the function itob(n,s,b) that converts the integer n into a base b
-character representation in the string s. In particular, itob(n,s,16) formats s as a
-hexadecimal integer in s.
-*/
 void itob(unsigned n, char s[], int b) {
     int i, sign, rem;
 

@@ -8,10 +8,7 @@ in the buffer. The EOF character is an integer type. This
 problem can be solved by declaring buf to be of integer type.
 */
 
-#include <assert.h>
-#include <limits.h>
 #include <stdio.h>
-#include <string.h>
 
 #define MAXSTR   100 /* max size of string */
 #define BUFEMPTY '\0'

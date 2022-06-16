@@ -1,3 +1,10 @@
+/*
+Exercise 4-2. Extend atof to handle scientific
+notation of the form 123.45e-6 where a
+floating-point number may be followed by e or
+E and an optionally signed exponent.
+*/
+
 #include <assert.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -6,14 +13,7 @@
 
 #define MAXLEN 10
 
-float atof(char s[]);
-
-/*
-Exercise 4-2. Extend atof to handle scientific
-notation of the form 123.45e-6 where a
-floating-point number may be followed by e or
-E and an optionally signed exponent.
-*/
+float atof(char[]);
 
 /* atof: convert string to float */
 float atof(char s[]) {

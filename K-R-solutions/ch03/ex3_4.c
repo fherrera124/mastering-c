@@ -1,10 +1,3 @@
-#include <assert.h>
-#include <limits.h>
-#include <stdio.h>
-#include "utils.h"
-
-void itoa(unsigned n, char s[]);
-
 /*
 Exercise 3-4. In a two's complement number representation, our version
 of itoa does not handle the largest negative number, that is, the
@@ -18,6 +11,13 @@ higher than INT_MAX.
 Solution: casting n to unsigned in the function prototype solves our
 problem since UINT_MAX is higher than abs(INT_MIN)
 */
+
+#include <assert.h>
+#include <limits.h>
+#include <stdio.h>
+#include "utils.h"
+
+void itoa(unsigned, char[]);
 
 /* itoa:  convert n to characters in s */
 void itoa(unsigned n, char s[]) {
