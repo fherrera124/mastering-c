@@ -1,12 +1,15 @@
 /*
-Exercise 4-5. Add access to library functions like sin, exp,
-and pow. See <math.h> in Appendix B, Section 4.
+Exercise 4-10. An alternate organization uses getline to read
+an entire input line; this makes getch and ungetch
+unnecessary. Revise the calculator to use this approach.
 */
 
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
+
+#include "utils.h"
 
 #define MAXOP   100 /* max size of operand or operator */
 #define NUMBER  '0' /* signal that a number was found */
@@ -20,15 +23,13 @@ double peek(void);
 void   swap(void);
 void   clear(void);
 void   dup(void);
-int    getch(void);
-void   ungetch(int);
 int    getop(char[]);
 
 /* globals */
-int    sp = 0;       /* next free stack position */
-double val[MAXVAL];  /* value stack */
-char   buf[BUFSIZE]; /* buffer for ungetch */
-int    bufp = 0;     /* next free position in buf */
+int    sp = 0;           /* next free stack position */
+double val[MAXVAL];      /* value stack */
+char   bufline[BUFSIZE]; /* buffer for getline */
+int    bufp = 0;         /* next position in bufline */
 
 /* push: push f onto value stack */
 void push(double f) {
@@ -83,51 +84,46 @@ void swap(void) {
 int getop(char s[]) {
     int i, c;
 
-    while ((s[0] = c = getch()) == ' ' || c == '\t')
+    while ((s[0] = c = bufline[bufp++]) == ' ' || c == '\t')
         ;
     s[1] = '\0';
 
     i = 0;
     if (c == '-') { /* check if '-' is operand or sign */
-        if (!isdigit(s[++i] = c = getch())) {
-            ungetch(c);
+        if (!isdigit(s[++i] = c = bufline[bufp++])) {
+            bufp--;
             c = '-';
         }
     }
     if (!isdigit(c) && c != '.')
-        return c;   /* not a number */
-    if (isdigit(c)) /* collect integer part */
-        while (isdigit(s[++i] = c = getch()))
+        return c;     /* not a number */
+    if (isdigit(c)) { /* collect integer part */
+        while (isdigit(s[++i] = c = bufline[bufp++]))
             ;
-    if (c == '.') /* collect fraction part */
-        while (isdigit(s[++i] = c = getch()))
+    }
+    if (c == '.') { /* collect fraction part */
+        while (isdigit(s[++i] = c = bufline[bufp++]))
             ;
+    }
     s[i] = '\0';
-    if (c != EOF)
-        ungetch(c); /* unget the non-numeric character*/
+
     return NUMBER;
-}
-
-int getch(void) { /* get a (possibly pushed-back) character */
-    return bufp > 0 ? buf[--bufp] : getchar();
-}
-
-void ungetch(int c) { /* push character back on input */
-    if (bufp >= BUFSIZE)
-        printf("ungetch: too many characters\n");
-    else
-        buf[bufp++] = c;
 }
 
 /* reverse polish calculator */
 
 int main(void) {
-    int    type;
     double op2;
     char   s[MAXOP];
 
-    while ((type = getop(s)) != EOF) {
-        switch (type) {
+    getline(bufline, MAXOP);
+
+    for (;;) {
+        switch (getop(s)) {
+            case '\0': /* start over */
+                bufp = 0;
+                getline(bufline, MAXOP);
+                break;
             case NUMBER:
                 push(atof(s));
                 break;
@@ -176,8 +172,6 @@ int main(void) {
                 break;
             case '?':
                 printf("peek: %g\n", peek());
-                break;
-            case '\n':
                 break;
             default:
                 printf("error: unknown command %s\n", s);

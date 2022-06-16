@@ -24,7 +24,7 @@ int    getop(char[]);
 /* globals */
 int    sp = 0;       /* next free stack position */
 double val[MAXVAL];  /* value stack */
-char   buf[BUFSIZE]; /* buffet for ungetch */
+char   buf[BUFSIZE]; /* buffer for ungetch */
 int    bufp = 0;     /* next free position in buf */
 
 /* push: push f onto value stack */
@@ -58,7 +58,6 @@ int getop(char s[]) {
             c = '-';
         }
     }
-
     if (!isdigit(c) && c != '.')
         return c;   /* not a number */
     if (isdigit(c)) /* collect integer part */
@@ -79,7 +78,7 @@ int getch(void) { /* get a (possibly pushed-back) character */
 
 void ungetch(int c) { /* push character back on input */
     if (bufp >= BUFSIZE)
-        printf("ungetch: too many characters");
+        printf("ungetch: too many characters\n");
     else
         buf[bufp++] = c;
 }
