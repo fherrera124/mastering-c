@@ -99,7 +99,8 @@ int main(void) {
                 push(pop() + pop());
                 break;
             case '-':
-                push(pop() - pop());
+                op2 = pop();
+                push(pop() - op2);
                 break;
             case '*':
                 op2 = pop();
