@@ -22,3 +22,19 @@ int getline(char s[], int lim) {
 
     return i;
 }
+
+/* clear_spaces: clear both leading and ending space characters from s */
+void clear_spaces(char s[]) {
+    int i, j, k;
+
+    for (i = 0; isspace(s[i]); i++)
+        ;
+    for (j = strlen(s) - 1; isspace(s[j]); j--)
+        ;
+    s[++j] = '\0';
+
+    if (i > 0) {
+        for (k = 0; i <= j; k++, i++)
+            s[k] = s[i];
+    }
+}
