@@ -16,9 +16,8 @@ void itoa(char s[], int n) {
     int  i = 0;
 
     if (n < 0) {
-        n    = -n;
-        s[0] = '-';
-        i++;
+        n      = -n;
+        s[i++] = '-';
     }
     for (int j = n; j /= 10; i++)
         ;
