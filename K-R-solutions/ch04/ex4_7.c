@@ -18,29 +18,15 @@ from the array buffer.
 #include <stdio.h>
 #include <string.h>
 
-#define MAXSTR  100 /* max size of string */
-#define BUFSIZE 100
+#include "utils.h"
+
+#define MAXSTR 100 /* max size of string */
 
 /* functions */
 int  getch(void);
 void ungetch(int);
 int  getstr(char[], int);
 void ungets(char[]);
-
-/* globals */
-char buf[BUFSIZE]; /* buffer for ungetch */
-int  bufp = 0;     /* next free position in buf */
-
-int getch(void) { /* get a (possibly pushed-back) character */
-    return bufp > 0 ? buf[--bufp] : getchar();
-}
-
-void ungetch(int c) { /* push character back on input */
-    if (bufp >= BUFSIZE)
-        printf("ungetch: too many characters\n");
-    else
-        buf[bufp++] = c;
-}
 
 void ungets(char s[]) { /* push string back onto the input */
     /* buffer is lifo, so pushing in reverse order */

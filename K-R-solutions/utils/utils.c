@@ -1,8 +1,8 @@
+#include "utils.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-
-#define BUFSIZE 100
 
 /* globals */
 char buf[BUFSIZE]; /* buffer for ungetch */
