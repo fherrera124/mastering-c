@@ -9,6 +9,7 @@ message(STATUS "Build executables in: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 # Source directories
 set(CH03_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch03)
 set(CH04_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch04)
+set(CH05_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch05)
 
 # Create the executables
 add_executable(ex3_1 ${CH03_DIR}/ex3_1.c)
@@ -27,8 +28,11 @@ add_executable(ex4_7 ${CH04_DIR}/ex4_7.c)
 add_executable(ex4_8 ${CH04_DIR}/ex4_8.c)
 add_executable(ex4_9 ${CH04_DIR}/ex4_9.c)
 add_executable(ex4_10 ${CH04_DIR}/ex4_10.c)
-#add_executable(ex4_11 ${CH04_DIR}/ex4_11.c)
+add_executable(ex4_11 ${CH04_DIR}/ex4_11.c)
 add_executable(ex4_12 ${CH04_DIR}/ex4_12.c)
+add_executable(ex4_13 ${CH04_DIR}/ex4_13.c)
+add_executable(ex4_14 ${CH04_DIR}/ex4_14.c)
+add_executable(ex5_1 ${CH05_DIR}/ex5_1.c)
 
 
 # Add subdirectory to the build
@@ -42,6 +46,7 @@ target_link_libraries(ex3_6 utils)
 target_link_libraries(ex4_1 utils)
 target_link_libraries(ex4_2 utils)
 target_link_libraries(ex4_10 utils)
+target_link_libraries(ex5_1 utils)
 
 # Include directory to executables (for header files)
 target_include_directories(ex3_3 PRIVATE utils)
@@ -51,3 +56,4 @@ target_include_directories(ex3_6 PRIVATE utils)
 target_include_directories(ex4_1 PRIVATE utils)
 target_include_directories(ex4_2 PRIVATE utils)
 target_include_directories(ex4_10 PRIVATE utils)
+target_include_directories(ex5_1 PRIVATE utils)

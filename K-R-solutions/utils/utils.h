@@ -1,2 +1,4 @@
-void reverse(char s[]);
-int getline(char s[], int lim);
+void reverse(char[]);
+int  getline(char[], int);
+int  getch(void);
+void ungetch(int);

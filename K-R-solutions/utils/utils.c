@@ -1,5 +1,12 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+
+#define BUFSIZE 100
+
+/* globals */
+char buf[BUFSIZE]; /* buffer for ungetch */
+int  bufp = 0;     /* next free position in buf */
 
 /* reverse: reverse string s in place */
 void reverse(char s[]) {
@@ -37,4 +44,17 @@ void clear_spaces(char s[]) {
         for (k = 0; i <= j; k++, i++)
             s[k] = s[i];
     }
+}
+
+/* getch: get a (possibly pushed-back) character */
+int getch(void) {
+    return bufp > 0 ? buf[--bufp] : getchar();
+}
+
+/* ungetch: push character back on input */
+void ungetch(int c) {
+    if (bufp >= BUFSIZE)
+        printf("ungetch: too many characters\n");
+    else
+        buf[bufp++] = c;
 }
