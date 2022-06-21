@@ -12,6 +12,8 @@ the top value from stack, use '='. Use '?' to just peek.
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
 
+#include "utils.h"
+
 #define MAXOP   100 /* max size of operand or operator */
 #define NUMBER  '0' /* signal that a number was found */
 #define MAXVAL  100 /* maximum depth of val stack */
@@ -24,15 +26,11 @@ double peek(void);
 void   swap(void);
 void   clear(void);
 void   dup(void);
-int    getch(void);
-void   ungetch(int);
 int    getop(char[]);
 
 /* globals */
-int    sp = 0;       /* next free stack position */
-double val[MAXVAL];  /* value stack */
-char   buf[BUFSIZE]; /* buffer for ungetch */
-int    bufp = 0;     /* next free position in buf */
+int    sp = 0;      /* next free stack position */
+double val[MAXVAL]; /* value stack */
 
 /* push: push f onto value stack */
 void push(double f) {
@@ -110,17 +108,6 @@ int getop(char s[]) {
     if (c != EOF)
         ungetch(c); /* unget the non-numeric character*/
     return NUMBER;
-}
-
-int getch(void) { /* get a (possibly pushed-back) character */
-    return bufp > 0 ? buf[--bufp] : getchar();
-}
-
-void ungetch(int c) { /* push character back on input */
-    if (bufp >= BUFSIZE)
-        printf("ungetch: too many characters\n");
-    else
-        buf[bufp++] = c;
 }
 
 /* reverse polish calculator */
