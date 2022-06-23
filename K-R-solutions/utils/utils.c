@@ -5,8 +5,8 @@
 #include <string.h>
 
 /* globals */
-char buf[BUFSIZE]; /* buffer for ungetch */
-int  bufp = 0;     /* next free position in buf */
+static char buf[BUFSIZE]; /* buffer for ungetch */
+static int  bufp = 0;     /* next free position in buf */
 
 /* reverse: reverse string s in place */
 void reverse(char s[]) {
