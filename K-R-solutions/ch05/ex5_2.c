@@ -2,6 +2,8 @@
  * Exercise 5-2. Write getfloat, the floating-point
  * analog of getint. What type does getfloat
  * return as its function value?
+ * 
+ * Answer: returns the same type as getint.
  */
 
 #include <ctype.h>
@@ -13,8 +15,11 @@
 #define END(x)       ((x) == EOF || (x) == '\n')
 #define CLEAR_BUFFER while ((getchar()) != '\n')
 
-/* getfloat: get next float from input into *pn
- *  returns 0 if input it's an invalid number
+/* 
+ * getfloat: get next float from input into *pn
+ * returns EOF for end of file, zero if the next
+ * input is not a number, and a positive value if
+ * the input contains a valid number
  */
 int getfloat(float *pn) {
     int   c, sign;
@@ -34,7 +39,7 @@ int getfloat(float *pn) {
         *pn = 10.0 * *pn + (c - '0');
 
     if (END(c)) {
-        *pn *= sign; /* a number */
+        *pn *= sign; /* an integer number */
     } else if (c == '.') {
         c = getch();
         for (power = 1.0; isdigit(c); c = getch()) {
@@ -45,7 +50,7 @@ int getfloat(float *pn) {
             ungetch(c); /* it's not a number */
             return 0;
         }
-        *pn *= sign / power; /* a number */
+        *pn *= sign / power; /* a float number */
     } else {
         ungetch(c); /* it's not a number */
         return 0;

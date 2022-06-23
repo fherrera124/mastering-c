@@ -10,7 +10,12 @@
 
 #include "utils.h"
 
-/* getint: get next integer from input into *pn */
+/*
+ * getint: get next integer from input into *pn
+ * returns EOF for end of file, zero if the next
+ * input is not a number, and a positive value if
+ * the input contains a valid number
+ */
 int getint(int *pn) {
     int c, sign;
 
