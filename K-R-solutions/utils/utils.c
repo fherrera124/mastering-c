@@ -9,6 +9,7 @@ static char buf[BUFSIZE]; /* buffer for ungetch */
 static int  bufp = 0;     /* next free position in buf */
 
 /* reverse: reverse string s in place */
+/* See ex5_6 for version using pointers */
 void reverse(char s[]) {
     int c, i, j;
     for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
@@ -19,6 +20,8 @@ void reverse(char s[]) {
 }
 
 /* getline: get line into s, return length */
+/* note: my version doesn't store new line */
+/* See ex5_6 for version using pointers */
 int getline(char s[], int lim) {
     int c, i = 0;
 
@@ -27,7 +30,7 @@ int getline(char s[], int lim) {
     }
     s[i] = '\0';
 
-    return i;
+    return ++i;
 }
 
 /* clear_spaces: clear both leading and ending space characters from s */

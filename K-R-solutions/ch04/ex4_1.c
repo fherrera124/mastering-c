@@ -14,7 +14,8 @@ int strindex(char[], char[]);
 
 /* strindex: returns the position of the
 rightmost occurrence of t in s, -1 if none.
-*/
+/*
+/* See ex5_6 for version using pointers */
 int strindex(char s[], char t[]) {
     int i, j, k, pos;
 
