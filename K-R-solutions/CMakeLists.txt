@@ -41,6 +41,7 @@ add_executable(ex5_6 ${CH05_DIR}/ex5_6/main.c ${CH05_DIR}/ex5_6/functions.c)
 add_executable(ex5_7 ${CH05_DIR}/ex5_7.c)
 add_executable(ex5_8 ${CH05_DIR}/ex5_8.c)
 add_executable(ex5_9 ${CH05_DIR}/ex5_9.c)
+add_executable(ex5_10 ${CH05_DIR}/ex5_10.c)
 
 # Add subdirectory to the build
 add_subdirectory(utils)
