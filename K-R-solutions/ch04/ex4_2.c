@@ -55,7 +55,7 @@ int main(void) {
     printf("atof of 123.45e+6:  %f\n", atof("123.45e+6"));
     printf("atof of -123.45E+6: %f\n", atof("-123.45E+6"));
 
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getline(s, MAXLEN);
 
     printf("atof of %s: %f\n", s, atof(s));

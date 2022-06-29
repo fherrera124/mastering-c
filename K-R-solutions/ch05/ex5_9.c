@@ -60,16 +60,19 @@ int main(void) {
     month_day(2022, 177, &m, &d);
     printf("Day and year: 177/2022. Month and day: %d %d\n", m, d);
 
-    /* Tests */
-    assert(day_of_year(2022, 2, 29) == -1);
-    assert(day_of_year(2024, 2, 29) == 60);
-    assert(day_of_year(2024, 22, 12) == -1);
+    /* ######### TESTS ######### */
 
-    month_day(2022, 366, &m, &d);
+    /* day_of_year */
+    assert(day_of_year(2022, 2, 29) == -1);  /* non-leap year */
+    assert(day_of_year(2024, 2, 29) == 60);  /* leap year */
+    assert(day_of_year(2024, 22, 12) == -1); /* invalid month number */
+
+    /* month_day */
+    month_day(2022, 366, &m, &d); /* non-leap year */
     assert(m == -1 && d == -1);
-    month_day(2024, 366, &m, &d);
+    month_day(2024, 366, &m, &d); /* leap year */
     assert(m == 12 && d == 31);
-    month_day(100, 500, &m, &d);
+    month_day(100, 500, &m, &d); /* invalid day year */
     assert(m == -1 && d == -1);
 
     return 0;

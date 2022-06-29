@@ -77,7 +77,7 @@ int main(void) {
 
     printf("Storing 5 valid float numbers into array.\n");
 
-    printf("\nAwaiting for [%d] number: ", i + 1);
+    printf("\nWaiting for [%d] number: ", i + 1);
     while (i < 5 && (res = getfloat(&array[i])) != EOF) {
         if (res) {
             i++;
@@ -87,7 +87,7 @@ int main(void) {
             CLEAR_BUFFER; /* clear the internal getchar() buffer */
         }
         if (i < 5)
-            printf("\nAwaiting for [%d] number: ", i + 1);
+            printf("\nWaiting for [%d] number: ", i + 1);
     }
 
     printf("\nFloat numbers stored in array:\n");

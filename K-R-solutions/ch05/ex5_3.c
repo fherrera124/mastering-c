@@ -26,9 +26,9 @@ void strcat2(char *s, char *t) {
 int main(void) {
     char s[MAX], t[MAX];
 
-    printf("Awaiting string for s: ");
+    printf("Waiting string for s: ");
     getline(s, MAX);
-    printf("\nAwaiting string for t: ");
+    printf("\nWaiting string for t: ");
     getline(t, MAX);
 
     strcat2(s, t);

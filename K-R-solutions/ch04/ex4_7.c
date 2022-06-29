@@ -53,7 +53,7 @@ int getstr(char s[], int lim) {
 int main(void) {
     char s[MAXSTR], t[MAXSTR];
 
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getstr(s, MAXSTR); /* buffer empty, getting the string from terminal */
     printf("string s: %s\n", s);
 
@@ -64,7 +64,7 @@ int main(void) {
 
     assert(strcmp(s, t) == 0);
 
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getstr(s, MAXSTR); /* buffer should be empty at this point, getting the string from terminal */
     printf("string s: %s\n", s);
 

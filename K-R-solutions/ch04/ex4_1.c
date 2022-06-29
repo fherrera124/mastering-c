@@ -34,9 +34,9 @@ int main() {
     char s[MAXLEN];
     char t[MAXLEN];
 
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getline(s, MAXLEN);
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getline(t, MAXLEN);
 
     printf("Pos: %d", strindex(s, t));

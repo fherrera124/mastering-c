@@ -33,9 +33,9 @@ int strend(char *s, char *t) {
 int main(void) {
     char s[MAX], t[MAX];
 
-    printf("Awaiting characters for s: ");
+    printf("Waiting characters for s: ");
     getline(s, MAX);
-    printf("\nAwaiting characters for t: ");
+    printf("\nWaiting characters for t: ");
     getline(t, MAX);
 
     printf("\nReturn value of strend(s,t): %d", strend(s, t));

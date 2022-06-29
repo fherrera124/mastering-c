@@ -49,7 +49,7 @@ int main(void) {
     char str[MAXLEN];
     char expanded_str[MAXLEN];
 
-    printf("Awaiting for input:\n");
+    printf("Waiting for input:\n");
     getline(str, MAXLEN);
 
     expand(str, expanded_str);

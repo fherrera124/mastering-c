@@ -42,7 +42,7 @@ int main(void) {
 
     assert(strcmp(s, t) == 0);
 
-    printf("Awaiting for character:\n");
+    printf("Waiting for character:\n");
     s[1] = getch();     /* buffer empty, getting character from terminal */
 
     ungetch(s[1]);      /* push the character onto the buffer */
