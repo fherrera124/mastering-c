@@ -14,11 +14,11 @@
  * Some working examples:
  * ./prog 2 2 +     returns 4
  * ./prog 8 -2 -    returns 10
- * ./prog -8 -2 +   returns -10 (operands swapped)
+ * ./prog -8 -2 /   returns 4
  * ./prog -2 5 p    returns -32
  * 
  * Escaping wildcard in Linux:
- * ./prog -2 5 '*'
+ * ./prog -2 5 '*' sould return -10
  *
  */
 

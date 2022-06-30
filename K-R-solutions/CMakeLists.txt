@@ -7,11 +7,24 @@ message(STATUS "Build Configuration: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Build executables in: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 # Source directories
+set(EXTRA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extra)
+set(CH02_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch02)
 set(CH03_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch03)
 set(CH04_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch04)
 set(CH05_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch05)
 
 # Create the executables
+add_executable(playing ${EXTRA_DIR}/playing.c)
+# add_executable(ex2_1 ${CH02_DIR}/ex2_1.c)
+# add_executable(ex2_2 ${CH02_DIR}/ex2_2.c)
+add_executable(ex2_3 ${CH02_DIR}/ex2_3.c)
+add_executable(ex2_4 ${CH02_DIR}/ex2_4.c)
+add_executable(ex2_5 ${CH02_DIR}/ex2_5.c)
+add_executable(ex2_6 ${CH02_DIR}/ex2_6.c)
+add_executable(ex2_7 ${CH02_DIR}/ex2_7.c)
+add_executable(ex2_8 ${CH02_DIR}/ex2_8.c)
+add_executable(ex2_9 ${CH02_DIR}/ex2_9.c)
+add_executable(ex2_10 ${CH02_DIR}/ex2_10.c)
 add_executable(ex3_1 ${CH03_DIR}/ex3_1.c)
 add_executable(ex3_2 ${CH03_DIR}/ex3_2.c)
 add_executable(ex3_3 ${CH03_DIR}/ex3_3.c)
@@ -42,6 +55,7 @@ add_executable(ex5_7 ${CH05_DIR}/ex5_7.c)
 add_executable(ex5_8 ${CH05_DIR}/ex5_8.c)
 add_executable(ex5_9 ${CH05_DIR}/ex5_9.c)
 add_executable(ex5_10 ${CH05_DIR}/ex5_10.c)
+add_executable(ex5_11 ${CH05_DIR}/ex5_11.c)
 
 # Add subdirectory to the build
 add_subdirectory(utils)
