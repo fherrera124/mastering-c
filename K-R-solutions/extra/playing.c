@@ -1,41 +1,42 @@
 /*
- * Intro:
-*/
+ * Some tests to learn and study.
+ */
 
-
+#include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
 
-void static integers(void) {
-    uint16_t _579 = 0x0243;  // 00000010 01000011 --> 512 + 67 = 579
+void static endianness(void) {
+    uint16_t _579;
+    uint8_t *LSB, *MSB;
 
-    /* _579 in memory (low endian):
-        00: 00000010
-        01: 01000011
-    */
+    _579 = 0x0243; /* 00000010 01000011 --> 512 + 67 = 579 */
+    assert(_579 == 579);
 
-    uint8_t *test = (uint8_t *)&_579;  // *test = 01000011 --> 67 (LSB of _579)
+    /*  MEMORY (little endian):
+     *  addr    : 01000011   (67)
+     *  addr+1  : 00000010   (2)
+     */
 
-    printf("1) %d, \n", *test++);  // 67
+    LSB = (uint8_t *)&_579; /* LSB of _579: 01000011 (67) */
+    MSB = LSB + 1;          /* MSB of _579: 00000010 (2) */
+    assert(*LSB == 67);
+    assert(*MSB == 2);
 
-    printf("2) %d, \n", *test--);  // *test == 00000010 --> 2  ( MSB of _579)
+    /* clear the MSB of _579 */
+    _579 &= 0x0ff;        /* 00000010 01000011 & 00000000 11111111 = 00000000 01000011 (67) */
+    assert(*MSB == 0);    /* MSB cleared */
+    assert(*LSB == 67);   /* LSB untouched */
+    assert(_579 == *LSB); /* now all active bits of _579 are located on his LSB*/
 
-    _579 &= 0x0ff;  // 00000010 01000011 & 00000000 11111111 --> 00000000 01000011 --> 67
-    printf("3) %d, \n", _579);
-
-    printf("4) %d, \n", *test++);  // LSB of _579 --> 67, untouched as in 1)
-
-    printf("5) %d, \n", *test);  // MSB of _579 --> changed: 0
-
-    *test |= 2;  // 00000000 | 00000010 --> 00000010 --> 2
-
-    printf("6) %d, \n", _579);  // now MSB back to original value --> 00000010 01000011 --> 579
+    /* restore the MSB of _579 */
+    *MSB |= 2;           /* 00000000 | 00000010 = 00000010 (2) */
+                         /* _579 |= (2<<8) should do the work too*/
+    assert(_579 == 579); /* _579 back to original value */
 }
 
-
 int main(void) {
-
-    integers();
+    endianness();
 
     return 0;
 }
