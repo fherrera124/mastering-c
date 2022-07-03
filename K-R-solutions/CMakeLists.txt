@@ -15,8 +15,8 @@ set(CH05_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch05)
 
 # Create the executables
 add_executable(playing ${EXTRA_DIR}/playing.c)
-# add_executable(ex2_1 ${CH02_DIR}/ex2_1.c)
-# add_executable(ex2_2 ${CH02_DIR}/ex2_2.c)
+add_executable(ex2_1 ${CH02_DIR}/ex2_1.c)
+add_executable(ex2_2 ${CH02_DIR}/ex2_2.c)
 add_executable(ex2_3 ${CH02_DIR}/ex2_3.c)
 add_executable(ex2_4 ${CH02_DIR}/ex2_4.c)
 add_executable(ex2_5 ${CH02_DIR}/ex2_5.c)
