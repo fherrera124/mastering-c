@@ -1,14 +1,18 @@
 
 /*
-Exercise 3-2. Write a function escape(s,t) that converts
-characters like newline and tab into visible escape
-sequences like \n and \t as it copies the string t to s.
-Use a switch. Write a function for the other direction
-as well, converting escape sequences into the real
-characters.
-*/
+ * Exercise 3-2. Write a function escape(s,t) that
+ * converts characters like newline and tab into
+ * visible escape sequences like \n and \t as it
+ * copies the string t to s. Use a switch. Write a
+ * function for the other direction as well,
+ * converting escape sequences into the real
+ * characters.
+ */
 
-#include <stdio.h>
+#include <assert.h>
+#include <string.h>
+
+#define MAX 100
 
 void escape(char[], const char[]);
 void escape_rev(char[], const char[]);
@@ -62,15 +66,12 @@ void escape_rev(char s[], const char t[]) {
 }
 
 int main(void) {
-    char s[10], t[10] = {'\n', '3', '\t', 'R', '\n', '\0'};
+    char s[MAX];
 
-    escape(s, t);
-    printf("%s\n", s);
-
-    char v[10] = {'\\', 't', 'y', '4', '\\', 'n', 'q', '\0'};
-
-    escape_rev(s, v);
-    printf("%s\n", s);
+    escape(s, "\n3\tR\n");                 /* copy pattern into s */
+    assert(strcmp(s, "\\n3\\tR\\n") == 0); /* succefully converted */
+    escape_rev(s, s);
+    assert(strcmp(s, "\n3\tR\n") == 0); /* original pattern restored */
 
     return 0;
 }

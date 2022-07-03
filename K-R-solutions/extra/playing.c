@@ -10,7 +10,7 @@ void static endianness(void) {
     uint16_t _579;
     uint8_t *LSB, *MSB;
 
-    _579 = 0x0243; /* 00000010 01000011 --> 512 + 67 = 579 */
+    _579 = 0x0243; /* 00000010 01000011 --> (2 << 8) + 67 = 512 + 67 = 579 */
     assert(_579 == 579);
 
     /*  MEMORY (little endian):
@@ -30,8 +30,9 @@ void static endianness(void) {
     assert(_579 == *LSB); /* now all active bits of _579 are located on his LSB*/
 
     /* restore the MSB of _579 */
-    *MSB |= 2;           /* 00000000 | 00000010 = 00000010 (2) */
-                         /* _579 |= (2<<8) should do the work too*/
+    _579 |= 2 << 8;      /* 00000000 01000011 | 00000010 00000000 = 00000010 01000011 (579) */
+    assert(*MSB == 2);   /* MSB restored */
+    assert(*LSB == 67);  /* LSB untouched */
     assert(_579 == 579); /* _579 back to original value */
 }
 
