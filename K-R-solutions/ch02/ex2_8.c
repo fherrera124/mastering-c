@@ -5,7 +5,6 @@
  */
 
 #include <assert.h>
-#include <stdio.h>
 
 unsigned rightrot(unsigned x, int n) {
     unsigned t, size;
@@ -18,7 +17,8 @@ unsigned rightrot(unsigned x, int n) {
 }
 
 int main(void) {
-    /* Note: tests below valid only for machines with int size of 32 bits */
+    /* Note: tests below are valid only for
+     * machines with int size of 32 bits*/
     assert(rightrot(0x65, 3) == 0xa000000c);
     assert(rightrot(0xFFFF, 3) == 0xE0001FFF);
     assert(rightrot(0xFFFFFFFF, 3) == 0xFFFFFFFF);
