@@ -8,6 +8,7 @@ message(STATUS "Build executables in: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 # Source directories
 set(EXTRA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extra)
+set(CH01_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch01)
 set(CH02_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch02)
 set(CH03_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch03)
 set(CH04_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch04)
@@ -15,6 +16,7 @@ set(CH05_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ch05)
 
 # Create the executables
 add_executable(playing ${EXTRA_DIR}/playing.c)
+add_executable(ex1_20 ${CH01_DIR}/ex1_20.c)
 add_executable(ex2_1 ${CH02_DIR}/ex2_1.c)
 add_executable(ex2_2 ${CH02_DIR}/ex2_2.c)
 add_executable(ex2_3 ${CH02_DIR}/ex2_3.c)
@@ -61,6 +63,7 @@ add_executable(ex5_11 ${CH05_DIR}/ex5_11.c)
 add_subdirectory(utils)
 
 # Link library to executables
+target_link_libraries(ex1_20 utils)
 target_link_libraries(ex3_3 utils)
 target_link_libraries(ex3_4 utils)
 target_link_libraries(ex3_5 utils)
@@ -79,6 +82,7 @@ target_link_libraries(ex5_4 utils)
 target_link_libraries(ex5_7 utils)
 
 # Include directory to executables (for header files)
+target_include_directories(ex1_20 PRIVATE utils)
 target_include_directories(ex3_3 PRIVATE utils)
 target_include_directories(ex3_4 PRIVATE utils)
 target_include_directories(ex3_5 PRIVATE utils)
